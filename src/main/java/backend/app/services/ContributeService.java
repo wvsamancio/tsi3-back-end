@@ -22,8 +22,12 @@ public class ContributeService {
         return contributeRepository.findAll();
     }
 
-    public Contribute get(String id) {
-        return contributeRepository.findById(id).orElseThrow(
+    public List<Contribute> getAllByUsername(String username) {
+        return contributeRepository.findByUsername(username);
+    }
+
+    public Contribute get(String username, String id) {
+        return contributeRepository.findByUsernameAndId(username, id).orElseThrow(
                 () -> new NotFoundException("Contribute not found"));
     }
 
@@ -31,8 +35,8 @@ public class ContributeService {
         return contributeRepository.save(contribute);
     }
 
-    public void delete(String id) {
-        get(id);
+    public void delete(String username, String id) {
+        get(username, id);
         contributeRepository.deleteById(id);
     }
 }

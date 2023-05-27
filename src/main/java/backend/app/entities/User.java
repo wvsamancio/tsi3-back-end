@@ -15,14 +15,14 @@ import lombok.NoArgsConstructor;
 @Document(collection = "users")
 public class User {
     @Id
-    String id;
+    private String id;
 
-    @NotEmpty(message = "CPF is required")
-    @UniqueElements(message = "CPF already exists")
-    String cpf;
+    @NotEmpty(message = "Username is required")
+    private String username;
 
     @NotEmpty(message = "Password is required")
-    String password;
+    private String password;
 
-    String role;
+    @NotEmpty(message = "Role is required")
+    private String role;
 }

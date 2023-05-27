@@ -28,9 +28,14 @@ public class ContributeResource {
         return new ResponseEntity<>(contributeService.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Contribute> get(@PathVariable String id) {
-        return new ResponseEntity<>(contributeService.get(id), HttpStatus.OK);
+    @GetMapping("/{username}")
+    public ResponseEntity<List<Contribute>> getAllByUsername(@PathVariable String username) {
+        return new ResponseEntity<>(contributeService.getAllByUsername(username), HttpStatus.OK);
+    }
+
+    @GetMapping("/{username}/{id}")
+    public ResponseEntity<Contribute> get(@PathVariable String username, @PathVariable String id) {
+        return new ResponseEntity<>(contributeService.get(username, id), HttpStatus.OK);
     }
 
     @PostMapping
@@ -38,9 +43,9 @@ public class ContributeResource {
         return new ResponseEntity<>(contributeService.save(contribute), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable String id) {
-        contributeService.delete(id);
+    @DeleteMapping("/{username}/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String username, String id) {
+        contributeService.delete(username, id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

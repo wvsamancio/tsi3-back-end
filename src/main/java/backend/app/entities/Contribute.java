@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "contribute")
+@Document(collection = "contributions")
 public class Contribute {
     @Id
     private String id;
@@ -28,6 +28,6 @@ public class Contribute {
     @NotEmpty(message = "Longitude is required")
     private String lng;
 
-    @NotEmpty(message = "User is required")
-    private String user;
+    @NotEmpty(message = "Username is required")
+    private String username;
 }
