@@ -17,7 +17,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authz -> authz
                 // COMMON - GET
-                .requestMatchers(HttpMethod.GET, "/sign").permitAll()
+                .requestMatchers(HttpMethod.GET, "/sign").hasAnyRole(null, "USER", "ADMIN")
                 // USER - GET
                 .requestMatchers(HttpMethod.GET, "/contributions/{username}").hasRole("USER")
                 .requestMatchers(HttpMethod.GET, "/contributions/{username}/{id}").hasRole("USER")
@@ -41,6 +41,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/users").permitAll());
 
         http.csrf(csrf -> csrf.disable());
+        http.cors(cors -> cors.disable());
         http.httpBasic(withDefaults());
         return http.build();
     }
