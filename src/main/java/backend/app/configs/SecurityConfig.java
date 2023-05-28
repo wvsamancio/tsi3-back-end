@@ -18,6 +18,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authz -> authz
                 // COMMON - OPTIONS
                 // COMMON - GET
+                .requestMatchers(HttpMethod.OPTIONS, "/sign").permitAll()
                 .requestMatchers(HttpMethod.GET, "/sign").hasAnyRole("USER", "ADMIN")
                 // USER - GET
                 .requestMatchers(HttpMethod.GET, "/contributions/{username}").hasRole("USER")
