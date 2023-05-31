@@ -17,8 +17,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authz -> authz
                 // COMMON - OPTIONS
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 // COMMON - GET
-                .requestMatchers(HttpMethod.OPTIONS, "/sign").permitAll()
                 .requestMatchers(HttpMethod.GET, "/sign").hasAnyRole("USER", "ADMIN")
                 // USER - GET
                 .requestMatchers(HttpMethod.GET, "/contributions/{username}").hasRole("USER")
